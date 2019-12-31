@@ -42,7 +42,7 @@ let client protocol extensions uri =
       | "https", ADDR_INET (h, p)
       | "wss", ADDR_INET (h, p) ->
         let h = Ipaddr_unix.of_inet_addr h in
-        `OpenSSL (h, p, Conduit_async.V2.Ssl.Config.create ())
+        `OpenSSL (h, p, Conduit_async.V2.Ssl.Config.create ~hostname:host ~keylog_file:"/Users/hanwang/sslkey.log" ())
       | _, ADDR_INET (h, p) ->
         let h = Ipaddr_unix.of_inet_addr h in
         `TCP (h, p)
